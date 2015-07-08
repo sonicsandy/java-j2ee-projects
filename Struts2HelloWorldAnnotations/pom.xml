@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sonic</groupId>
+	<artifactId>Struts2HelloWorldAnnotations</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>Struts2HelloWorldAnnotations Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+		<dependency>
+          <groupId>org.apache.struts</groupId>
+		  <artifactId>struts2-convention-plugin</artifactId>
+		  <version>2.3.20</version>
+	    </dependency>
+	</dependencies>
+	<build>
+		<finalName>Struts2HelloWorldAnnotations</finalName>
+		<plugins>
+			<!-- Eclipse project - mvn eclipse:eclipse -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<!-- Always download and attach dependencies source code -->
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<!-- Avoid type mvn eclipse:eclipse -Dwtpversion=2.0 -->
+					<wtpversion>2.0</wtpversion>
+				</configuration>
+			</plugin>
+
+			<!-- Set JDK Compiler Level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- For Maven Tomcat Plugin - mvn tomcat:run -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/Struts2HelloWorldAnnotations</path>
+				</configuration>
+			</plugin>
+
+			<!-- For copying war file to tomcat -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.3</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<copy file="target/Struts2HelloWorldAnnotations.war" todir="C:/Playground/apache-tomcat-8.0.21/webapps/" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
